@@ -1,4 +1,5 @@
-class Hpoint extends LivingCreature {
+let random = require("./random");
+module.exports = class Hpoint extends LivingCreature {
     constructor(x, y) {
         super(x,y)
         this.directions = [];

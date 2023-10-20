@@ -1,4 +1,5 @@
-class Bomb extends LivingCreature {
+let random = require("./random");
+module.exports = class Bomb extends LivingCreature {
 
     bomb() {
         for (var i in this.directions) {
