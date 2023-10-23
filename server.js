@@ -29,13 +29,6 @@ GrassEater = require("./grassEater")
 Hpoint = require("./hpoint")
 Predator = require("./predator")
 
-var cl = false;
-io.on("connection", function (socket) {
-    if (cl) {
-        setInterval(drawserver, 200);
-        cl = true;
-    }
-});
 
 function generateMatrix(matLength, gr, grEa, pr, bm, hp) {
     for (let i = 0; i < matLength; i++) {
@@ -119,12 +112,40 @@ function drawserver() {
         bombArr[i].bomb()
     }
 
-    let sendData = {
-        matrix: matrix
-    }
-    io.sockets.emit("matrix", sendData)
+let statobj = {
+    grass : grassArr.length,
+    bomb : bombArr.length,
+    grassEater : grassEaterArr.length,
+    predator : predatorArr.length,
+    hpoint : hpointArr.length
+    
 }
 
-setInterval(drawserver, 1000)
+    io.emit("statobj", statobj)
+    io.emit("matrix", matrix)
+}
+
+io.on("connection", (socket) => {
+    socket.emit("matrix", matrix)
+
+   
+
+    startGame()
+})
+
+
+time = 500
+
+let intervalID;
+
+function startGame(){
+    clearInterval(intervalID)
+    intervalID = setInterval(() =>{
+        drawserver()
+    }, time)
+
+}
+
+
 
 

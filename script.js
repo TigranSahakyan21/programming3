@@ -1,4 +1,8 @@
+import { fstat } from "fs";
+
 socket = io();
+
+let statisticobj = {}
 
 var side = 62;
 var matLength = 15
@@ -8,12 +12,10 @@ function setup() {
     background('#acacac');
 }
 
-function drawmatrix(data) {
-    matrix = data.matrix;
+function drawmatrix(matrix) {
 
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-
             if (matrix[y][x] == 1) {
                 fill("green");
             }
@@ -37,6 +39,17 @@ function drawmatrix(data) {
 }
 
 socket.on("matrix", drawmatrix);
+
+
+socket.on("statobj", function(st) {
+    statisticobj = st
+    console.log(statisticobj.grass)
+
+})
+
+var jsonfile = JSON.stringify(statisticobj)
+
+
 
 
 
