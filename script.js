@@ -67,46 +67,44 @@ socket.on("statobj", function (st) {
 let stat = document.getElementById("stat-grass")
 
 const spring = document.getElementById("spring")
-spring.addEventListener("click",changeWeather )
+spring.addEventListener("click", changeWeather1)
 const winter = document.getElementById("winter")
-winter.addEventListener("click",changeWeather )
+winter.addEventListener("click", changeWeather2)
 const summer = document.getElementById("summer")
-summer.addEventListener("click",changeWeather )
+summer.addEventListener("click", changeWeather3)
 const autumn = document.getElementById("autumn")
-autumn.addEventListener("click",changeWeather )
+autumn.addEventListener("click", changeWeather4)
 
 
-function changeWeather(){
-    if(spring.innerText === "spring"){
+function changeWeather1() {
+    if (spring.innerText === "spring") {
         colorobj.green = "#0EDB07"
         colorobj.yellow = "orange"
         colorobj.kanach = "white"
 
     }
-    else if(winter.innerText === "winter"){
+}
+
+function changeWeather2() {
+    if (winter.innerText === "winter") {
         colorobj.green = "white"
         colorobj.yellow = "red"
         colorobj.red = "#B35A94"
     }
-    else if(summer.innerText === "summer" ){
+}
+
+function changeWeather3() {
+    if (summer.innerText === "summer") {
         colorobj.green = "#A0BB26"
         colorobj.yellow = "purple"
         colorobj.red = "#00778E"
     }
-    else if(autumn.innerText === "autumn"){
+}
+
+function changeWeather4() {
+    if(autumn.innerText === "autumn"){
         colorobj.green = "green"
         colorobj.yellow = "yellow"
         colorobj.red = "#red"
     }
-
 }
-
-
-
-
-
-
-
-
-
-
