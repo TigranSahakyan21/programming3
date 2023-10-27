@@ -1,5 +1,5 @@
 var express = require("express");
-
+var fs = require("fs");
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -94,6 +94,10 @@ for (var y = 0; y < matrix.length; y++) {
             let bm = new Bomb(x, y);
             bombArr.push(bm);
         }
+        else if (matrix[y][x] == 5){
+            let hp = new Hpoint(x, y)
+            hpointArr.push(hp);
+        }
     }
 }
 
@@ -111,6 +115,9 @@ function drawserver() {
     for (let i in bombArr) {
         bombArr[i].bomb()
     }
+    for(let i in hpointArr){
+        hpointArr[i].hpoint()
+    }
 
 let statobj = {
     grass : grassArr.length,
@@ -120,16 +127,13 @@ let statobj = {
     hpoint : hpointArr.length
     
 }
-
+fs.writeFileSync("statistic.json", JSON.stringify(statobj))
     io.emit("statobj", statobj)
     io.emit("matrix", matrix)
 }
 
 io.on("connection", (socket) => {
     socket.emit("matrix", matrix)
-
-   
-
     startGame()
 })
 
@@ -145,7 +149,3 @@ function startGame(){
     }, time)
 
 }
-
-
-
-

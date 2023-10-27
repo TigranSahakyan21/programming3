@@ -116,26 +116,25 @@ module.exports = class GrassEater extends LivingCreature {
             this.move()
         }
     }
-    // heal() {
-    //     var emptyCells = this.chooseCell(5);
-    //     var newCell = random(emptyCells);
-    //     console.log('dhsgklds');
-    //     if (newCell) {
-    //         this.energy += 7
-    //         var newX = newCell[0];
-    //         var newY = newCell[1];
-    //         matrix[newY][newX] = matrix[this.y][this.x]
-    //         matrix[this.y][this.x] = 0;
-    //         this.x = newX
-    //         this.y = newY
-    //         for (var i in hpointArr) {
-    //             if (newX == hpointArr[i].x && newY == hpointArr[i].y) {
-    //                 hpointArr.splice(i, 1);
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }
+    heal() {
+        var emptyCells = this.chooseCell(5);
+        var newCell = random(emptyCells);
+        if (newCell) {
+            this.energy += 7
+            var newX = newCell[0];
+            var newY = newCell[1];
+            matrix[newY][newX] = matrix[this.y][this.x]
+            matrix[this.y][this.x] = 0;
+            this.x = newX
+            this.y = newY
+            for (var i in hpointArr) {
+                if (newX == hpointArr[i].x && newY == hpointArr[i].y) {
+                    hpointArr.splice(i, 1);
+                    break;
+                }
+            }
+        }
+    }
 
 
     die() {

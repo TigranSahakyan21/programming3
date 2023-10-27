@@ -4,7 +4,8 @@ module.exports = class Hpoint extends LivingCreature {
         super(x,y)
         this.directions = [];
     }
-    getNewCoordinates() {
+    hpoint(){
+    // getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
